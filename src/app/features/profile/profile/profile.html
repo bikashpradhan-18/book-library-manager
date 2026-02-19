@@ -14,21 +14,58 @@
 
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Email</mat-label>
-                <input matInput formControlName="email" readonly="true" />
+                <input matInput formControlName="email" readonly />
+            </mat-form-field>
+
+            <mat-checkbox class="checkbox" (change)="togglePasswordChange()">
+                Change Password
+            </mat-checkbox>
+
+            @if (changePassword) {
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>New Password</mat-label>
+
+                <input matInput [type]="hideNewPassword ? 'password' : 'text'" formControlName="newPassword" />
+
+                <button mat-icon-button matSuffix type="button" (click)="hideNewPassword = !hideNewPassword">
+                    <mat-icon>
+                        {{ hideNewPassword ? 'visibility_off' : 'visibility' }}
+                    </mat-icon>
+                </button>
+
+                @if (form.get('newPassword')?.hasError('required')) {
+                <mat-error>Password is required</mat-error>
+                }
+
+                @if (form.get('newPassword')?.hasError('minlength')) {
+                <mat-error>Password must be at least 6 characters</mat-error>
+                }
+
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Password</mat-label>
-                <input matInput type="password" formControlName="password" />
+                <mat-label>Confirm Password</mat-label>
+
+                <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" formControlName="confirmPassword" />
+
+                <button mat-icon-button matSuffix type="button" (click)="hideConfirmPassword = !hideConfirmPassword">
+                    <mat-icon>
+                        {{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}
+                    </mat-icon>
+                </button>
+
+                @if (form.get('confirmPassword')?.hasError('required')) {
+                <mat-error>Confirm password is required</mat-error>
+                }
+
             </mat-form-field>
+
+            }
 
             <button mat-raised-button color="primary" type="submit">
                 Save Changes
             </button>
-
-            @if (successMessage) {
-            <p class="success">{{ successMessage }}</p>
-            }
 
         </form>
 

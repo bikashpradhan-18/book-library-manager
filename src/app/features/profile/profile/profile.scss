@@ -5,13 +5,13 @@
 }
 
 mat-card {
-  width: 520px;        // Increased width
+  width: 520px; // Increased width
   padding: 32px;
   border-radius: 12px;
 }
 
 .title {
-  margin-bottom: 24px;  // Space below title
+  margin-bottom: 24px; // Space below title
 }
 
 .full-width {
@@ -26,4 +26,9 @@ button {
 .success {
   color: green;
   margin-top: 12px;
+}
+
+.checkbox {
+  margin-bottom: 20px;
+  display: block;
 }

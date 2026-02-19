@@ -53,7 +53,7 @@ export class Login {
         this.router.navigate(['/books']);
       },
       error: (err) => {
-        this.errorMessage = err.message || 'Login failed';
+        this.errorMessage = err.message || 'Invalid email or password';
       },
     });
   }

@@ -10,6 +10,14 @@
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Email</mat-label>
                 <input matInput type="email" formControlName="email" />
+
+                @if (form.get('email')?.hasError('required') && form.get('email')?.touched) {
+                <mat-error>Email is required</mat-error>
+                }
+
+                @if (form.get('email')?.hasError('email') && form.get('email')?.touched) {
+                <mat-error>Enter a valid email</mat-error>
+                }
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="full-width">
@@ -23,9 +31,19 @@
                     </mat-icon>
                 </button>
 
+                @if (form.get('password')?.hasError('required') && form.get('password')?.touched) {
+                <mat-error>Password is required</mat-error>
+                }
             </mat-form-field>
 
-            <button mat-raised-button color="primary" class="full-width" type="submit">
+            @if (errorMessage) {
+            <div class="error-msg">
+                {{ errorMessage }}
+            </div>
+            }
+
+            <button mat-raised-button color="primary" class="full-width login-btn" type="submit"
+                [disabled]="form.invalid">
                 Login
             </button>
 
