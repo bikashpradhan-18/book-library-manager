@@ -1,0 +1,40 @@
+<div class="books-container">
+
+    @for (book of books; track book.id) {
+
+    <mat-card class="book-card">
+
+        <mat-card-header>
+            <mat-card-title>{{ book.title }}</mat-card-title>
+            <mat-card-subtitle>{{ book.author }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-actions class="actions">
+
+            <button mat-stroked-button color="primary" (click)="openDialog(book)">
+                Read
+            </button>
+
+            @if (auth.isLoggedIn()) {
+
+            @if (!isRequested(book)) {
+            <button mat-raised-button color="primary" (click)="request(book.id)">
+                Request
+            </button>
+            }
+
+            @if (isRequested(book)) {
+            <button mat-raised-button color="accent" disabled>
+                Requested
+            </button>
+            }
+
+            }
+
+        </mat-card-actions>
+
+    </mat-card>
+
+    }
+
+</div>

@@ -1,0 +1,25 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+mat-card {
+    width: 420px;
+    padding: 32px;
+    border-radius: 12px;
+}
+
+.title {
+    margin-bottom: 24px; // space below Login
+}
+
+.full-width {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.guest-btn {
+    margin-top: 12px;
+}

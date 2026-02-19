@@ -1,0 +1,36 @@
+<div class="profile-container">
+    <mat-card>
+
+        <mat-card-title class="title">
+            Update Profile
+        </mat-card-title>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" readonly="true" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password" />
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit">
+                Save Changes
+            </button>
+
+            @if (successMessage) {
+            <p class="success">{{ successMessage }}</p>
+            }
+
+        </form>
+
+    </mat-card>
+</div>

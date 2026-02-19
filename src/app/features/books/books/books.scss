@@ -1,0 +1,20 @@
+.books-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.book-card {
+    padding: 8px;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 0 4px;
+}
+
+.actions button {
+    flex: 1;
+}

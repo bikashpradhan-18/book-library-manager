@@ -1,0 +1,29 @@
+.profile-container {
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+mat-card {
+  width: 520px;        // Increased width
+  padding: 32px;
+  border-radius: 12px;
+}
+
+.title {
+  margin-bottom: 24px;  // Space below title
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+button {
+  margin-top: 8px;
+}
+
+.success {
+  color: green;
+  margin-top: 12px;
+}

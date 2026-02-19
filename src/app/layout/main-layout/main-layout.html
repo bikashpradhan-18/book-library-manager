@@ -1,0 +1,49 @@
+<mat-toolbar color="primary">
+    <span>Book Library Manager</span>
+
+    <span class="spacer"></span>
+
+    @if (!auth.isLoggedIn()) {
+    <button mat-button routerLink="/login">
+        Login
+    </button>
+    }
+
+    @if (auth.isLoggedIn()) {
+    <span style="margin-right: 10px;">
+        {{ auth.getRole() }}
+    </span>
+
+    <button mat-button (click)="logout()">
+        Logout
+    </button>
+    }
+</mat-toolbar>
+
+<mat-sidenav-container class="container">
+    <mat-sidenav mode="side" opened>
+        <mat-nav-list>
+            <a mat-list-item routerLink="/books">
+                Books
+            </a>
+
+            @if (auth.isLoggedIn()) {
+            <a mat-list-item routerLink="/profile">
+                Profile
+            </a>
+            }
+
+            @if (auth.getRole() === 'Admin') {
+            <a mat-list-item routerLink="/admin">
+                Admin Dashboard
+            </a>
+            }
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
