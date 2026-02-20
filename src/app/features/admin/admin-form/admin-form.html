@@ -1,0 +1,102 @@
+<div class="admin-form-container">
+
+    <mat-card>
+
+        <mat-card-title class="title">
+            {{ isEditMode ? 'Edit User' : 'Add User' }}
+        </mat-card-title>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+            <!-- Name -->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" />
+
+                @if (form.get('name')?.hasError('required') && form.get('name')?.touched) {
+                <mat-error>Name is required</mat-error>
+                }
+            </mat-form-field>
+
+            <!-- Email -->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" />
+
+                @if (form.get('email')?.hasError('required') && form.get('email')?.touched) {
+                <mat-error>Email is required</mat-error>
+                }
+
+                @if (form.get('email')?.hasError('email') && form.get('email')?.touched) {
+                <mat-error>Enter a valid email</mat-error>
+                }
+            </mat-form-field>
+
+            <!-- Role -->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Role</mat-label>
+                <mat-select formControlName="role">
+                    <mat-option value="User">User</mat-option>
+                    <mat-option value="Admin">Admin</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!-- Change Password (Edit Mode Only) -->
+            @if (isEditMode) {
+            <mat-checkbox class="checkbox" (change)="togglePasswordChange()">
+                Change Password
+            </mat-checkbox>
+            }
+
+            <!-- Password Fields -->
+            @if (!isEditMode || changePassword) {
+
+            <!-- Password -->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Password</mat-label>
+
+                <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" />
+
+                <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+                    <mat-icon>
+                        {{ hidePassword ? 'visibility_off' : 'visibility' }}
+                    </mat-icon>
+                </button>
+
+                @if (form.get('password')?.hasError('required') && form.get('password')?.touched) {
+                <mat-error>Password is required</mat-error>
+                }
+
+                @if (form.get('password')?.hasError('minlength') && form.get('password')?.touched) {
+                <mat-error>Password must be at least 6 characters</mat-error>
+                }
+            </mat-form-field>
+
+            <!-- Confirm Password -->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Confirm Password</mat-label>
+
+                <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" formControlName="confirmPassword" />
+
+                <button mat-icon-button matSuffix type="button" (click)="hideConfirmPassword = !hideConfirmPassword">
+                    <mat-icon>
+                        {{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}
+                    </mat-icon>
+                </button>
+
+                @if (form.get('confirmPassword')?.hasError('required') && form.get('confirmPassword')?.touched) {
+                <mat-error>Confirm password is required</mat-error>
+                }
+            </mat-form-field>
+
+            }
+
+            <button mat-raised-button color="primary" class="submit-btn" type="submit" [disabled]="form.invalid">
+                {{ isEditMode ? 'Update User' : 'Add User' }}
+            </button>
+
+        </form>
+
+    </mat-card>
+
+</div>

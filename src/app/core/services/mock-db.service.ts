@@ -86,6 +86,12 @@ export class MockDbService {
     }
 
     addUser(user: User) {
+        const highestId = this.users.length
+            ? Math.max(...this.users.map(u => u.id ?? 0))
+            : 0;
+
+        user.id = highestId + 1;
+
         this.users.push(user);
         this.persistUsers();
     }

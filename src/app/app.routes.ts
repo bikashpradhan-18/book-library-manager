@@ -29,8 +29,26 @@ export const routes: Routes = [
       {
         path: 'admin',
         canActivate: [authGuard, roleGuard('Admin')],
-        loadComponent: () =>
-          import('./features/admin/admin/admin').then(m => m.Admin),
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import('./features/admin/admin/admin')
+                .then(m => m.Admin),
+          },
+          {
+            path: 'add',
+            loadComponent: () =>
+              import('./features/admin/admin-form/admin-form')
+                .then(m => m.AdminForm),
+          },
+          {
+            path: 'edit/:id',
+            loadComponent: () =>
+              import('./features/admin/admin-form/admin-form')
+                .then(m => m.AdminForm),
+          }
+        ]
       },
       {
         path: '',
