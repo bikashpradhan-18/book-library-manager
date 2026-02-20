@@ -68,15 +68,37 @@ export class MockDbService {
                 title: 'Atomic Habits',
                 author: 'James Clear',
                 description: 'A practical guide to building good habits.',
-                // posterUrl: 'assets/books/atomic-habits.jpg',
             },
             {
                 id: 2,
                 title: 'Clean Code',
                 author: 'Robert C. Martin',
                 description: 'A handbook of agile software craftsmanship.',
-                // posterUrl: 'assets/books/clean-code.jpg',
             },
+            {
+                id: 3,
+                title: 'The Pragmatic',
+                author: 'Andrew Hunt & David Thomas',
+                description: 'Classic guide to software craftsmanship and pragmatic thinking.',
+            },
+            {
+                id: 4,
+                title: 'Deep Work',
+                author: 'Cal Newport',
+                description: 'Rules for focused success in a distracted world.',
+            },
+            {
+                id: 5,
+                title: 'Design Patterns',
+                author: 'Erich Gamma et al.',
+                description: 'Elements of reusable object-oriented software.',
+            },
+            {
+                id: 6,
+                title: 'You Don’t Know JS',
+                author: 'Kyle Simpson',
+                description: 'In-depth exploration of JavaScript core mechanisms.',
+            }
         ];
     }
 

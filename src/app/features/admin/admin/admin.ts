@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MockDbService } from '../../../core/services/mock-db.service';
+import { AuthService } from '../../../core/services/auth.service';
 @Component({
   selector: 'app-admin',
   imports: [
@@ -36,7 +37,8 @@ export class Admin {
   constructor(
     private db: MockDbService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public auth: AuthService
   ) {
     this.loadUsers();
   }
@@ -46,6 +48,7 @@ export class Admin {
   }
 
   loadUsers() {
+    console.log(this.auth.getCurrentUser());
     this.dataSource.data = this.db.getUsers();
   }
 

@@ -7,6 +7,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { Book } from '../../../core/models/book.model';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { BookDialog } from '../book-dialog/book-dialog';
+import { Seo } from '../../../core/services/seo';
 
 @Component({
   selector: 'app-books',
@@ -21,8 +22,15 @@ export class Books {
   constructor(
     private db: MockDbService,
     public auth: AuthService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private seo: Seo
   ) {
+    this.seo.updateSeo({
+      title: 'Book Library Manager | Browse Books',
+      description: 'Browse available books in the Book Library Manager application.',
+      keywords: 'books, library, angular, book manager'
+    });
+
     this.books = this.db.getBooks();
   }
 
@@ -42,8 +50,8 @@ export class Books {
   openDialog(book: Book) {
     this.dialog.open(BookDialog, {
       data: book,
-      width: '400px'
+      width: '600px'
     });
   }
-  
+
 }

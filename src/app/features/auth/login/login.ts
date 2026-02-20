@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { MatIconModule } from '@angular/material/icon';
+import { Seo } from '../../../core/services/seo';
 
 @Component({
   selector: 'app-login',
@@ -30,8 +31,14 @@ export class Login {
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private seo: Seo
   ) {
+    this.seo.updateSeo({
+      title: 'Login | Book Library Manager',
+      description: 'Login to manage books and users in the Book Library Manager.'
+    });
+    
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(4)]],
